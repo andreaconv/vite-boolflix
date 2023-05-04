@@ -1,0 +1,19 @@
+@mixin centerFlex($type: 'vertical'){
+
+  display: flex;
+
+  @if $type == 'vertical'{
+    align-items: center;
+  } @else if $type == 'horizontal'{
+    justify-content: center;
+  } @else if $type == 'both'{
+    align-items: center;
+    justify-content: center;
+  } @else if $type == 'between' {
+    align-items: center;
+    justify-content: space-between;
+  } @else if $type == 'wrap-ween' {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
