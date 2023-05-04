@@ -14,10 +14,10 @@ export default {
     },
   methods: {
     addCounter(){
-      if (store.counter < store.resultArray.length){
+      if (store.counter < store.movieUserArray.length){
         store.counter ++
       } 
-      if (store.counter === store.resultArray.length - 1 ){
+      if (store.counter === store.movieUserArray.length){
         store.counter = 0
       }
       
@@ -40,11 +40,19 @@ export default {
         <button @click="addCounter">Next</button>
       </div>    
       
+      <!-- <Card v-if="store.showCard"
+        type="MOVIE"
+        :title="store.movieUserArray[store.counter].title"
+        :original_title="store.movieUserArray[store.counter].original_title" 
+        :original_language="store.movieUserArray[store.counter].original_language"
+        :vote_average="store.movieUserArray[store.counter].vote_average"/> -->
+
       <Card v-if="store.showCard"
-        :title="store.resultArray[store.counter].title"
-        :original_title="store.resultArray[store.counter].original_title" 
-        :original_language="store.resultArray[store.counter].original_language"
-        :vote_average="store.resultArray[store.counter].vote_average"/>
+        type="SERIES"
+        :title="store.seriesUserArray[0].name"
+        :original_title="store.seriesUserArray[0].original_name" 
+        :original_language="store.seriesUserArray[0].original_language"
+        :vote_average="store.seriesUserArray[0].vote_average"/>
 
     </div>
 

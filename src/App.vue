@@ -23,30 +23,45 @@
         }
         )
         .then(result => {
-          store.resultArray = result.data.results;
+          store.movieUserArray = result.data.results;
           store.showCard = true;
-          console.log("movie utente", store.resultArray)
+          console.log("movie utente", store.movieUserArray)
         })
-        this.getLanguages()
-      },
-      getLanguages(){
-        axios.get(store.apiUrlMovie,
+
+        axios.get(store.apiUrlSerie, 
         {
           params: {
             query: store.searchInput,
           }
-        })
+        }
+        )
         .then(result => {
-          const languages = result.data.results;
-          languages.forEach(language => {
-            if (!store.languagesArray.includes(language.original_language)){
-              store.languagesArray.push(language.original_language)
-            }
-            
-          });
-          console.log('array di lingue',store.languagesArray)
+          store.seriesUserArray = result.data.results;
+          store.showCard = true;
+          console.log("serie utente", store.seriesUserArray)
+          console.log("nome della prima serie utente -->", store.seriesUserArray[store.counter].name)
         })
+        // this.getLanguages()
       },
+      //  questa funzione riempie l'array delle lingue con le lingue del film cercato al momento
+      // getLanguages(){
+      //   axios.get(store.apiUrlMovie,
+      //   {
+      //     params: {
+      //       query: store.searchInput,
+      //     }
+      //   })
+      //   .then(result => {
+      //     const languages = result.data.results;
+      //     languages.forEach(language => {
+      //       if (!store.languagesArray.includes(language.original_language)){
+      //         store.languagesArray.push(language.original_language)
+      //       }
+            
+      //     });
+      //     console.log('array di lingue',store.languagesArray)
+      //   })
+      // },
       getMoviePopular(){
         axios.get(store.apiUrlMoviePopular)
         .then(result => {
