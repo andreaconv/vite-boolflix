@@ -15,7 +15,7 @@
     },
     methods: {
       getApi(){
-        axios.get(store.apiUrl, 
+        axios.get(store.apiUrlMovie, 
         {
           params: {
             query: store.searchInput,
@@ -26,6 +26,25 @@
           store.resultArray = result.data.results;
           store.showCard = true;
           console.log("movie utente", store.resultArray)
+        })
+        this.getLanguages()
+      },
+      getLanguages(){
+        axios.get(store.apiUrlMovie,
+        {
+          params: {
+            query: store.searchInput,
+          }
+        })
+        .then(result => {
+          const languages = result.data.results;
+          languages.forEach(language => {
+            if (!store.languagesArray.includes(language.original_language)){
+              store.languagesArray.push(language.original_language)
+            }
+            
+          });
+          console.log('array di lingue',store.languagesArray)
         })
       },
       getMoviePopular(){
@@ -39,7 +58,7 @@
     mounted(){
       // this.getMoviePopular()
     },
-    computed(){
+    computed:{
     },
   }
   </script>
