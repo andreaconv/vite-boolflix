@@ -15,14 +15,20 @@
     },
     methods: {
       getApi(){
-        axios.get(store.apiUrl)
+        axios.get(store.apiUrl, 
+        {
+          params: {
+            query: store.searchInput,
+          }
+        }
+        )
         .then(result => {
           console.log(result.data)
         })
       }
     },
     mounted(){
-
+      this.getApi()
     },
     computed(){
 
@@ -32,7 +38,7 @@
 
 <template>
 
-  <Header />
+  <Header @startSearch="getApi"/>
 
 </template>
 
