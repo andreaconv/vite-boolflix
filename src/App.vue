@@ -1,10 +1,12 @@
   <script>
+  import Header from './components/myHeader.vue';
+  import axios from 'axios';
   import { store } from './data/store';
 
   export default {
     name: 'App',
     components: {
-
+      Header,
     },
     data() {
       return{
@@ -12,7 +14,12 @@
       }
     },
     methods: {
-
+      getApi(){
+        axios.get(store.apiUrl)
+        .then(result => {
+          console.log(result.data)
+        })
+      }
     },
     mounted(){
 
