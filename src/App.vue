@@ -23,15 +23,15 @@
         }
         )
         .then(result => {
-          console.log(result.data)
+          store.resultArray = result.data.results;
+          store.showCard = true;
+          console.log(store.resultArray)
         })
       }
     },
     mounted(){
-      this.getApi()
     },
     computed(){
-
     },
   }
   </script>
