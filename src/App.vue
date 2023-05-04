@@ -25,11 +25,19 @@
         .then(result => {
           store.resultArray = result.data.results;
           store.showCard = true;
-          console.log(store.resultArray)
+          console.log("movie utente", store.resultArray)
+        })
+      },
+      getMoviePopular(){
+        axios.get(store.apiUrlMoviePopular)
+        .then(result => {
+          store.popularMovie = result.data.results;
+          console.log("movie popular",store.popularMovie)
         })
       }
     },
     mounted(){
+      this.getMoviePopular()
     },
     computed(){
     },
