@@ -33,14 +33,18 @@ export default {
     <div class="container">
 
       <div class="input">
-        <input v-model="store.searchInput" type="text">
+        <input v-model="store.searchInput" @keyup.enter="$emit('startSearch')" type="text">
 
         <button @click="$emit('startSearch')">Search</button>
 
         <button @click="addCounter">Next</button>
       </div>    
       
-      <Card />
+      <Card v-if="store.showCard"
+        :title="store.resultArray[store.counter].title"
+        :original_title="store.resultArray[store.counter].original_title" 
+        :original_language="store.resultArray[store.counter].original_language"
+        :vote_average="store.resultArray[store.counter].vote_average"/>
 
     </div>
 
@@ -68,10 +72,6 @@ export default {
         margin: 2rem;
         padding: 5px;
       }
-
-      // .card{
-      //   color: white;
-      // }
     }
   }
 

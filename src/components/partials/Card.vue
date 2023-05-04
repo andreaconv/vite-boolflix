@@ -4,9 +4,10 @@ import { store } from '../../data/store';
 export default {
   name: 'Card',
   props:{
-    image: Object,
-    name: String,
-    type: String,
+    title: String,
+    original_title: String,
+    original_language: String,
+    vote_average: Number,
   },
   data() {
       return{
@@ -18,11 +19,11 @@ export default {
 
 <template>
   
-  <div v-if="store.showCard" class="card">
-    <h1>{{ store.resultArray[store.counter].title }}</h1>
-    <h2>{{ store.resultArray[store.counter].original_title }}</h2>
-    <h3>{{ store.resultArray[store.counter].original_language }}</h3>
-    <h4>{{ store.resultArray[store.counter].vote_average }}</h4>
+  <div class="card">
+    <h1>{{ title }}</h1>
+    <h2>{{ original_title }}</h2>
+    <h3>{{ original_language }}</h3>
+    <h4>{{ vote_average }}</h4>
   </div>
 
 </template>
