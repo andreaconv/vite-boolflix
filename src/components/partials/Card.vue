@@ -35,16 +35,8 @@ export default {
     <h2>{{ title }}</h2>
     <img class="flag" :src="selectImg" :alt="original_language">
     <div class="stars">
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <!-- <i class="fa-solid fa-star"></i> -->
-      <!-- <i class="fa-solid fa-star"></i> -->
-      <!-- <i class="fa-solid fa-star"></i> -->
-      <!-- <i class="fa-solid fa-star"></i> -->
-      <!-- <i class="fa-solid fa-star"></i> -->
+      <i v-for="star in vote_average" :key="star" class="fa-solid fa-star"></i>
+      <i v-for="star in (5 - vote_average)" :key="star" class="fa-regular fa-star"></i>
     </div>
     <h4>{{ vote_average }}</h4>
   </div>

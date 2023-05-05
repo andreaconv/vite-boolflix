@@ -28,7 +28,7 @@ export default {
       if (store.counterSeries === store.movieUserArray.length){
         store.counterSeries = 0
       }
-    }
+    },
   },
 }
 </script>
@@ -55,7 +55,7 @@ export default {
         :title="store.popularMovie[0].title"
         :original_title="store.popularMovie[0].original_title" 
         :original_language="store.popularMovie[0].original_language"
-        :vote_average="Math.ceil(store.popularMovie[0].vote_average / 2)"/>
+        :vote_average="Math.round(store.popularMovie[0].vote_average / 2)"/>
 
       <Card v-if="store.showCardMovie"
         type="MOVIE"
@@ -63,7 +63,7 @@ export default {
         :title="store.movieUserArray[store.counterMovie].title"
         :original_title="store.movieUserArray[store.counterMovie].original_title" 
         :original_language="store.movieUserArray[store.counterMovie].original_language"
-        :vote_average="store.movieUserArray[store.counterMovie].vote_average"/>
+        :vote_average="Math.round(store.movieUserArray[store.counterMovie].vote_average / 2)"/>
 
       <Card v-if="store.showCardSeries"
         type="SERIES"
@@ -71,7 +71,7 @@ export default {
         :title="store.seriesUserArray[store.counterSeries].name"
         :original_title="store.seriesUserArray[store.counterSeries].original_name" 
         :original_language="store.seriesUserArray[store.counterSeries].original_language"
-        :vote_average="store.seriesUserArray[store.counterSeries].vote_average"/>
+        :vote_average="Math.round(store.seriesUserArray[store.counterSeries].vote_average / 2)"/>
 
     </div>
 

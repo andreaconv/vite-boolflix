@@ -77,6 +77,7 @@
         .then(result => {
           store.popularMovie = result.data.results;
           console.log("movie popular",store.popularMovie)
+          console.log("voto",store.popularMovie[0].vote_average)
         })
         .catch(error => {
           console.log(error.response)
@@ -84,7 +85,7 @@
       },
     },
     mounted(){
-      this.getMoviePopular()
+      // this.getMoviePopular()
       // this.getScrubs()
     },
     computed:{
