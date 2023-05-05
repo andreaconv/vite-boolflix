@@ -1,6 +1,4 @@
-<!-- TODO: aggiungere bandiere   -->
-  
-  <script>
+<script>
   import Header from './components/myHeader.vue';
   import Jumbo from './components/Jumbo.vue';
   import Main from './components/myMain.vue';
@@ -39,7 +37,6 @@
           store.movieUserArray = result.data.results;
           store.showCardMovie = true;
         })
-        // this.getLanguages()
       },
       getApiSeries(){
         axios.get(store.apiUrlSerie, 
@@ -54,25 +51,6 @@
           store.showCardSeries = true;
         })
       },
-      //  questa funzione riempie l'array delle lingue con le lingue del film cercato al momento
-      // getLanguages(){
-      //   axios.get(store.apiUrlMovie,
-      //   {
-      //     params: {
-      //       query: store.searchInput,
-      //     }
-      //   })
-      //   .then(result => {
-      //     const languages = result.data.results;
-      //     languages.forEach(language => {
-      //       if (!store.languagesArray.includes(language.original_language)){
-      //         store.languagesArray.push(language.original_language)
-      //       }
-
-      //     });
-      //     console.log('array di lingue',store.languagesArray)
-      //   })
-      // },
       getMoviePopular(){
         axios.get(store.apiUrlMoviePopular)
         .then(result => {

@@ -37,19 +37,24 @@ export default {
 
   <div class="main-wrapper">
 
+    <h1>MOVIE POPULAR with slider</h1>
     <swiper
       :slides-per-view="5"
       :space-between="50"
       @swiper="onSwiper"
       @slideChange="onSlideChange">
-      <swiper-slide>Slide 1</swiper-slide>
-      <swiper-slide>Slide 2</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-  </swiper>
+        <swiper-slide 
+        v-for="card in store.popularMovie" 
+        :key="card.id">
+          <Card 
+            :image="card.poster_path"
+            :title="card.title"
+            :original_title="card.original_title" 
+            :original_language="card.original_language"
+            :vote_average="Math.round(card.vote_average / 2)"
+          />
+        </swiper-slide>
+      </swiper>
     
     <h1>MOVIE POPULAR</h1>
     <div v-if="store.popularMovie.length > 0" class="row movie-pop">
@@ -105,10 +110,12 @@ export default {
     h1{
       color: white;
       text-align: center;
+      margin: 0.5rem 0;
     }
     .row{
       display: flex;
       overflow-x: scroll;
+      padding-bottom: 2rem;
     }
     
 
