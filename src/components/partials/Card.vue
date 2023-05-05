@@ -5,6 +5,7 @@ export default {
   name: 'Card',
   props:{
     type: String,
+    image: String,
     title: String,
     original_title: String,
     original_language: String,
@@ -28,12 +29,11 @@ export default {
 <template>
   
   <div class="card">
+    <!-- FIXME: perchè devo inserire la larghezza nell'URL dell'immagine? -->
+    <img class="poster" :src="`https://image.tmdb.org/t/p/w300/${image}`" alt="">
     <h1>{{ type }}</h1>
     <h1>{{ title }}</h1>
-    <!-- <h2>{{ original_title }}</h2> -->
-    <img :src="selectImg" :alt="original_language">
-    <!-- <img v-if="original_language === 'it'" src="../../assets/it.png"> -->
-    <!-- <h3 v-if="original_language !== 'en' || original_language !== 'it'">{{ original_language }}</h3> -->
+    <img class="flag" :src="selectImg" :alt="original_language">
     <h4>{{ vote_average }}</h4>
   </div>
 
@@ -44,7 +44,11 @@ export default {
   color: white;
   text-align: center;
 
-  img{
+  img.poster{
+    width: 200px;
+  }
+
+  img.flag{
     width: 40px;
   }
 }

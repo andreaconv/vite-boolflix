@@ -40,7 +40,7 @@ export default {
     <div class="container">
 
       <div class="input">
-        <input v-model="store.searchInput" @keyup.enter="$emit('startSearch')" type="text">
+        <input v-model="store.searchInput" @keyup.enter="$emit('searchMovie'), $emit('searchSeries')" type="text">
 
         <button @click="$emit('searchMovie'), $emit('searchSeries')">Search</button>
 
@@ -51,6 +51,7 @@ export default {
       
       <Card v-if="store.showCardMovie"
         type="MOVIE"
+        :image="store.movieUserArray[store.counterMovie].poster_path"
         :title="store.movieUserArray[store.counterMovie].title"
         :original_title="store.movieUserArray[store.counterMovie].original_title" 
         :original_language="store.movieUserArray[store.counterMovie].original_language"
@@ -58,6 +59,7 @@ export default {
 
       <Card v-if="store.showCardSeries"
         type="SERIES"
+        :image="store.seriesUserArray[store.counterSeries].poster_path"
         :title="store.seriesUserArray[store.counterSeries].name"
         :original_title="store.seriesUserArray[store.counterSeries].original_name" 
         :original_language="store.seriesUserArray[store.counterSeries].original_language"
@@ -82,8 +84,6 @@ export default {
     .container{
       @include centerFlex('vertical');
       flex-direction: column;
-      // debug
-      height: 100vh;
 
       .input *{
         margin: 2rem;
