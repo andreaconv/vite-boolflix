@@ -1,17 +1,13 @@
 <script>
-import Card from './partials/Card.vue';
 import { store } from '../data/store';
 
 export default {
   name: 'myHeader',
-  components: {
-    Card,
-  },
   data() {
-      return{
-        store,
-      }
-    },
+    return{
+      store,
+    }
+  },
   methods: {
     addCounterMovie(){
       if (store.counterMovie < store.movieUserArray.length){
@@ -37,43 +33,16 @@ export default {
 
   <header>
 
-    <div class="container">
+      <img src="../assets/logo-boolflix.png" alt="">
 
       <div class="input">
         <input v-model="store.searchInput" @keyup.enter="$emit('searchMovie'), $emit('searchSeries')" type="text">
 
         <button @click="$emit('searchMovie'), $emit('searchSeries')">Search</button>
 
-        <button @click="addCounterMovie">Next Movie</button>
-
-        <button @click="addCounterSeries">Next Series</button>
-      </div>    
-      
-      <Card v-if="store.popularMovie.length > 0"
-        type="MOVIE POPULAR"
-        :image="store.popularMovie[0].poster_path"
-        :title="store.popularMovie[0].title"
-        :original_title="store.popularMovie[0].original_title" 
-        :original_language="store.popularMovie[0].original_language"
-        :vote_average="Math.round(store.popularMovie[0].vote_average / 2)"/>
-
-      <Card v-if="store.showCardMovie"
-        type="MOVIE"
-        :image="store.movieUserArray[store.counterMovie].poster_path"
-        :title="store.movieUserArray[store.counterMovie].title"
-        :original_title="store.movieUserArray[store.counterMovie].original_title" 
-        :original_language="store.movieUserArray[store.counterMovie].original_language"
-        :vote_average="Math.round(store.movieUserArray[store.counterMovie].vote_average / 2)"/>
-
-      <Card v-if="store.showCardSeries"
-        type="SERIES"
-        :image="store.seriesUserArray[store.counterSeries].poster_path"
-        :title="store.seriesUserArray[store.counterSeries].name"
-        :original_title="store.seriesUserArray[store.counterSeries].original_name" 
-        :original_language="store.seriesUserArray[store.counterSeries].original_language"
-        :vote_average="Math.round(store.seriesUserArray[store.counterSeries].vote_average / 2)"/>
-
-    </div>
+        <!-- <button @click="addCounterMovie">Next Movie</button> -->
+        <!-- <button @click="addCounterSeries">Next Series</button> -->
+      </div> 
 
   </header>
 
@@ -85,19 +54,22 @@ export default {
   @use '../scss/partials/mixin' as *;
 
   header{
-    background-color: $primary-color;
-    // debug
-    min-height: 100vh;
+    @include centerFlex ('between');
+    @include fixed();
+    // background-color: $primary-color;
+    // TODO: modificare il colore con un linear-gradient()
+    background-color: black;
+    height: $height-header;
+    padding: 0 50px;
 
-    .container{
-      @include centerFlex('vertical');
-      flex-direction: column;
+    img{
+      height: 50%;
+    }
 
-      .input *{
+    .input *{
         margin: 2rem;
         padding: 5px;
       }
-    }
   }
 
 

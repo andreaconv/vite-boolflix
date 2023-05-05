@@ -2,6 +2,7 @@
   
   <script>
   import Header from './components/myHeader.vue';
+  import Main from './components/myMain.vue';
   import axios from 'axios';
   import { store } from './data/store';
 
@@ -9,6 +10,7 @@
     name: 'App',
     components: {
       Header,
+      Main,
     },
     data() {
       return{
@@ -96,6 +98,8 @@
 <template>
 
   <Header @searchMovie="getApiMovies" @searchSeries="getApiSeries"/>
+
+  <Main />
 
 </template>
 
