@@ -38,7 +38,6 @@
         .then(result => {
           store.movieUserArray = result.data.results;
           store.showCardMovie = true;
-          console.log("movie utente", store.movieUserArray)
         })
         // this.getLanguages()
       },
@@ -53,8 +52,6 @@
         .then(result => {
           store.seriesUserArray = result.data.results;
           store.showCardSeries = true;
-          console.log("serie utente", store.seriesUserArray)
-          console.log("nome della prima serie utente -->", store.seriesUserArray[0].name)
         })
       },
       //  questa funzione riempie l'array delle lingue con le lingue del film cercato al momento
@@ -80,8 +77,6 @@
         axios.get(store.apiUrlMoviePopular)
         .then(result => {
           store.popularMovie = result.data.results;
-          console.log("movie popular",store.popularMovie)
-          console.log("voto",store.popularMovie[0].vote_average)
         })
         .catch(error => {
           console.log(error.response)

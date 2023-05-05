@@ -19,7 +19,7 @@ export default {
     selectImg(){
       // if()  se non trova l'immagine visualizza la stringa della lingua originale
       
-      return  `/src/assets/flags/${this.original_language}.png`
+      return  `/src/assets/flags/language-${this.original_language}.svg`
     }
   }
 }

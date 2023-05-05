@@ -1,12 +1,30 @@
 <script>
 import Card from './partials/Card.vue';
 import { store } from '../data/store';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
 
 export default {
   name: 'myMain',
   components: {
     Card,
+    Swiper,
+    SwiperSlide,
   },
+  // debug
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = () => {
+      console.log('slide change');
+    };
+    return {
+      onSwiper,
+      onSlideChange,
+    };
+  },
+  // debug
   data() {
     return{
       store,
@@ -18,6 +36,20 @@ export default {
 <template>
 
   <div class="main-wrapper">
+
+    <swiper
+      :slides-per-view="5"
+      :space-between="50"
+      @swiper="onSwiper"
+      @slideChange="onSlideChange">
+      <swiper-slide>Slide 1</swiper-slide>
+      <swiper-slide>Slide 2</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+  </swiper>
     
     <h1>MOVIE POPULAR</h1>
     <div v-if="store.popularMovie.length > 0" class="row movie-pop">
@@ -68,6 +100,8 @@ export default {
     min-height: 100vh;
     background-color: $primary-color;
 
+    color: white;
+
     h1{
       color: white;
       text-align: center;
@@ -76,6 +110,7 @@ export default {
       display: flex;
       overflow-x: scroll;
     }
+    
 
   }
 
