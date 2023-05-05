@@ -67,7 +67,7 @@
       //       if (!store.languagesArray.includes(language.original_language)){
       //         store.languagesArray.push(language.original_language)
       //       }
-            
+
       //     });
       //     console.log('array di lingue',store.languagesArray)
       //   })
@@ -78,10 +78,13 @@
           store.popularMovie = result.data.results;
           console.log("movie popular",store.popularMovie)
         })
-      }
+        .catch(error => {
+          console.log(error.response)
+        })
+      },
     },
     mounted(){
-      // this.getMoviePopular()
+      this.getMoviePopular()
       // this.getScrubs()
     },
     computed:{

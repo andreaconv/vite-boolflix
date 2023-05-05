@@ -49,6 +49,14 @@ export default {
         <button @click="addCounterSeries">Next Series</button>
       </div>    
       
+      <Card v-if="store.popularMovie.length > 0"
+        type="MOVIE POPULAR"
+        :image="store.popularMovie[0].poster_path"
+        :title="store.popularMovie[0].title"
+        :original_title="store.popularMovie[0].original_title" 
+        :original_language="store.popularMovie[0].original_language"
+        :vote_average="Math.ceil(store.popularMovie[0].vote_average / 2)"/>
+
       <Card v-if="store.showCardMovie"
         type="MOVIE"
         :image="store.movieUserArray[store.counterMovie].poster_path"
