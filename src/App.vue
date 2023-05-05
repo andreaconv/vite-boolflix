@@ -2,6 +2,7 @@
   
   <script>
   import Header from './components/myHeader.vue';
+  import Jumbo from './components/Jumbo.vue';
   import Main from './components/myMain.vue';
   import axios from 'axios';
   import { store } from './data/store';
@@ -10,6 +11,7 @@
     name: 'App',
     components: {
       Header,
+      Jumbo,
       Main,
     },
     data() {
@@ -98,6 +100,8 @@
 <template>
 
   <Header @searchMovie="getApiMovies" @searchSeries="getApiSeries"/>
+
+  <!-- <Jumbo  /> -->
 
   <Main />
 

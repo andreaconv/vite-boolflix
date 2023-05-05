@@ -4,7 +4,6 @@ import { store } from '../../data/store';
 export default {
   name: 'Card',
   props:{
-    type: String,
     image: String,
     title: String,
     original_title: String,
@@ -31,7 +30,6 @@ export default {
   <div class="card">
     <!-- FIXME: perchè devo inserire la larghezza nell'URL dell'immagine? -->
     <img class="poster" :src="`https://image.tmdb.org/t/p/w300/${image}`" alt="">
-    <h1>{{ type }}</h1>
     <h2>{{ title }}</h2>
     <img class="flag" :src="selectImg" :alt="original_language">
     <div class="stars">

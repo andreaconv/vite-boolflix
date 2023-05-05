@@ -18,30 +18,42 @@ export default {
 <template>
 
   <div class="main-wrapper">
+    
+    <h1>MOVIE POPULAR</h1>
+    <div v-if="store.popularMovie.length > 0" class="row movie-pop">
+      <Card
+      v-for="card in store.popularMovie" 
+      :key="card.id"
+      :image="card.poster_path"
+      :title="card.title"
+      :original_title="card.original_title" 
+      :original_language="card.original_language"
+      :vote_average="Math.round(card.vote_average / 2)"/>
+    </div>
 
-    <Card v-if="store.popularMovie.length > 0"
-    type="MOVIE POPULAR"
-    :image="store.popularMovie[0].poster_path"
-    :title="store.popularMovie[0].title"
-    :original_title="store.popularMovie[0].original_title" 
-    :original_language="store.popularMovie[0].original_language"
-    :vote_average="Math.round(store.popularMovie[0].vote_average / 2)"/>
+    <h1 v-if="store.showCardMovie">MOVIE</h1>
+    <div v-if="store.showCardMovie" class="row movie">
+      <Card 
+        v-for="card in store.movieUserArray" 
+        :key="card.id"
+        :image="card.poster_path"
+        :title="card.title"
+        :original_title="card.original_title" 
+        :original_language="card.original_language"
+        :vote_average="Math.round(card.vote_average / 2)"/>
+    </div>
 
-  <Card v-if="store.showCardMovie"
-    type="MOVIE"
-    :image="store.movieUserArray[store.counterMovie].poster_path"
-    :title="store.movieUserArray[store.counterMovie].title"
-    :original_title="store.movieUserArray[store.counterMovie].original_title" 
-    :original_language="store.movieUserArray[store.counterMovie].original_language"
-    :vote_average="Math.round(store.movieUserArray[store.counterMovie].vote_average / 2)"/>
-
-  <Card v-if="store.showCardSeries"
-    type="SERIES"
-    :image="store.seriesUserArray[store.counterSeries].poster_path"
-    :title="store.seriesUserArray[store.counterSeries].name"
-    :original_title="store.seriesUserArray[store.counterSeries].original_name" 
-    :original_language="store.seriesUserArray[store.counterSeries].original_language"
-    :vote_average="Math.round(store.seriesUserArray[store.counterSeries].vote_average / 2)"/>
+    <h1 v-if="store.showCardSeries">SERIES</h1>
+    <div v-if="store.showCardSeries" class="row series">
+      <Card
+        v-for="card in store.seriesUserArray" 
+        :key="card.id"
+        :image="card.poster_path"
+        :title="card.name"
+        :original_title="card.original_name" 
+        :original_language="card.original_language"
+        :vote_average="Math.round(card.vote_average / 2)"/>
+    </div>
 
   </div>
 
@@ -55,6 +67,16 @@ export default {
     padding-top: $height-header;
     min-height: 100vh;
     background-color: $primary-color;
+
+    h1{
+      color: white;
+      text-align: center;
+    }
+    .row{
+      display: flex;
+      overflow-x: scroll;
+    }
+
   }
 
 
