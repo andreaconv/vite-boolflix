@@ -85,7 +85,7 @@
       },
     },
     mounted(){
-      // this.getMoviePopular()
+      this.getMoviePopular()
       // this.getScrubs()
     },
     computed:{
