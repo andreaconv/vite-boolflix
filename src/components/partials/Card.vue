@@ -32,8 +32,20 @@ export default {
     <!-- FIXME: perchè devo inserire la larghezza nell'URL dell'immagine? -->
     <img class="poster" :src="`https://image.tmdb.org/t/p/w300/${image}`" alt="">
     <h1>{{ type }}</h1>
-    <h1>{{ title }}</h1>
+    <h2>{{ title }}</h2>
     <img class="flag" :src="selectImg" :alt="original_language">
+    <div class="stars">
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <i class="fa-regular fa-star"></i>
+      <!-- <i class="fa-solid fa-star"></i> -->
+      <!-- <i class="fa-solid fa-star"></i> -->
+      <!-- <i class="fa-solid fa-star"></i> -->
+      <!-- <i class="fa-solid fa-star"></i> -->
+      <!-- <i class="fa-solid fa-star"></i> -->
+    </div>
     <h4>{{ vote_average }}</h4>
   </div>
 
@@ -46,6 +58,10 @@ export default {
 
   img.poster{
     width: 200px;
+  }
+
+  .stars i{
+    font-size: 1.2rem;
   }
 
   img.flag{
