@@ -1,3 +1,5 @@
+<!-- TODO: aggiungere bandiere   -->
+  
   <script>
   import Header from './components/myHeader.vue';
   import axios from 'axios';
@@ -11,10 +13,17 @@
     data() {
       return{
         store,
+        showCard: false
       }
     },
     methods: {
-      getApi(){
+      getScrubs(){
+        axios.get(store.apiUrlSerieScrubs)
+        .then(result => {
+          console.log("scrubs", result.data)
+        })
+      },
+      getApiMovies(){
         axios.get(store.apiUrlMovie, 
         {
           params: {
@@ -24,10 +33,12 @@
         )
         .then(result => {
           store.movieUserArray = result.data.results;
-          store.showCard = true;
+          store.showCardMovie = true;
           console.log("movie utente", store.movieUserArray)
         })
-
+        // this.getLanguages()
+      },
+      getApiSeries(){
         axios.get(store.apiUrlSerie, 
         {
           params: {
@@ -37,11 +48,10 @@
         )
         .then(result => {
           store.seriesUserArray = result.data.results;
-          store.showCard = true;
+          store.showCardSeries = true;
           console.log("serie utente", store.seriesUserArray)
-          console.log("nome della prima serie utente -->", store.seriesUserArray[store.counter].name)
+          console.log("nome della prima serie utente -->", store.seriesUserArray[0].name)
         })
-        // this.getLanguages()
       },
       //  questa funzione riempie l'array delle lingue con le lingue del film cercato al momento
       // getLanguages(){
@@ -72,6 +82,7 @@
     },
     mounted(){
       // this.getMoviePopular()
+      // this.getScrubs()
     },
     computed:{
     },
@@ -80,7 +91,7 @@
 
 <template>
 
-  <Header @startSearch="getApi"/>
+  <Header @searchMovie="getApiMovies" @searchSeries="getApiSeries"/>
 
 </template>
 

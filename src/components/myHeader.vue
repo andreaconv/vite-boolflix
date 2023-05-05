@@ -13,14 +13,21 @@ export default {
       }
     },
   methods: {
-    addCounter(){
-      if (store.counter < store.movieUserArray.length){
-        store.counter ++
+    addCounterMovie(){
+      if (store.counterMovie < store.movieUserArray.length){
+        store.counterMovie ++
       } 
-      if (store.counter === store.movieUserArray.length){
-        store.counter = 0
+      if (store.counterMovie === store.movieUserArray.length){
+        store.counterMovie = 0
       }
-      
+    },
+    addCounterSeries(){
+      if (store.counterSeries < store.movieUserArray.length){
+        store.counterSeries ++
+      } 
+      if (store.counterSeries === store.movieUserArray.length){
+        store.counterSeries = 0
+      }
     }
   },
 }
@@ -35,24 +42,26 @@ export default {
       <div class="input">
         <input v-model="store.searchInput" @keyup.enter="$emit('startSearch')" type="text">
 
-        <button @click="$emit('startSearch')">Search</button>
+        <button @click="$emit('searchMovie'), $emit('searchSeries')">Search</button>
 
-        <button @click="addCounter">Next</button>
+        <button @click="addCounterMovie">Next Movie</button>
+
+        <button @click="addCounterSeries">Next Series</button>
       </div>    
       
-      <!-- <Card v-if="store.showCard"
+      <Card v-if="store.showCardMovie"
         type="MOVIE"
-        :title="store.movieUserArray[store.counter].title"
-        :original_title="store.movieUserArray[store.counter].original_title" 
-        :original_language="store.movieUserArray[store.counter].original_language"
-        :vote_average="store.movieUserArray[store.counter].vote_average"/> -->
+        :title="store.movieUserArray[store.counterMovie].title"
+        :original_title="store.movieUserArray[store.counterMovie].original_title" 
+        :original_language="store.movieUserArray[store.counterMovie].original_language"
+        :vote_average="store.movieUserArray[store.counterMovie].vote_average"/>
 
-      <Card v-if="store.showCard"
+      <Card v-if="store.showCardSeries"
         type="SERIES"
-        :title="store.seriesUserArray[0].name"
-        :original_title="store.seriesUserArray[0].original_name" 
-        :original_language="store.seriesUserArray[0].original_language"
-        :vote_average="store.seriesUserArray[0].vote_average"/>
+        :title="store.seriesUserArray[store.counterSeries].name"
+        :original_title="store.seriesUserArray[store.counterSeries].original_name" 
+        :original_language="store.seriesUserArray[store.counterSeries].original_language"
+        :vote_average="store.seriesUserArray[store.counterSeries].vote_average"/>
 
     </div>
 

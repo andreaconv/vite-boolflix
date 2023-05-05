@@ -30,7 +30,7 @@ export default {
   <div class="card">
     <h1>{{ type }}</h1>
     <h1>{{ title }}</h1>
-    <h2>{{ original_title }}</h2>
+    <!-- <h2>{{ original_title }}</h2> -->
     <img :src="selectImg" :alt="original_language">
     <!-- <img v-if="original_language === 'it'" src="../../assets/it.png"> -->
     <!-- <h3 v-if="original_language !== 'en' || original_language !== 'it'">{{ original_language }}</h3> -->
