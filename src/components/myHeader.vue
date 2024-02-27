@@ -9,22 +9,6 @@ export default {
     }
   },
   methods: {
-    addCounterMovie(){
-      if (store.counterMovie < store.movieUserArray.length){
-        store.counterMovie ++
-      } 
-      if (store.counterMovie === store.movieUserArray.length){
-        store.counterMovie = 0
-      }
-    },
-    addCounterSeries(){
-      if (store.counterSeries < store.movieUserArray.length){
-        store.counterSeries ++
-      } 
-      if (store.counterSeries === store.movieUserArray.length){
-        store.counterSeries = 0
-      }
-    },
   },
 }
 </script>
@@ -33,16 +17,20 @@ export default {
 
   <header>
 
+    <div class="image">
       <img src="../assets/logo-boolflix.png" alt="">
+    </div>
 
-      <div class="input">
-        <input v-model="store.searchInput" @keyup.enter="$emit('searchMovie'), $emit('searchSeries')" type="text">
+    <div class="input">
+      <input
+        placeholder="Cerca cosa guardare"
+        v-model="store.searchInput"
+        @keyup="$emit('searchMovie'), $emit('searchSeries') "
+        type="text">
 
-        <button @click="$emit('searchMovie'), $emit('searchSeries')">Search</button>
-
-        <!-- <button @click="addCounterMovie">Next Movie</button> -->
-        <!-- <button @click="addCounterSeries">Next Series</button> -->
-      </div> 
+      <button @click="$emit('searchMovie'), $emit('searchSeries')">Search</button>
+      
+    </div> 
 
   </header>
 
@@ -56,20 +44,46 @@ export default {
   header{
     @include centerFlex ('between');
     @include fixed();
-    // background-color: $primary-color;
-    // TODO: modificare il colore con un linear-gradient()
-    background-color: black;
+    background-image: linear-gradient(black, $primary-color);
     height: $height-header;
     padding: 0 50px;
+    opacity: 0.8;
 
-    img{
+    .image{
       height: 50%;
+      img{
+        height: 100%;
+        object-fit: cover;
+      }
     }
 
-    .input *{
-        margin: 2rem;
-        padding: 5px;
+    .input
+      *{
+        margin-left: 1rem;
+        padding: 10px 12px;
+        border-radius: 7px;
+        border: none;
       }
+      button{
+        color: white;
+        background-color: $tertiary-color;
+        &:hover{
+          background-color: $secondary-color;
+        }
+      }
+    }
+    
+    // TODO: rendere responsive l'immagine logo
+  @media all and (max-width: 531px){
+    header{
+      padding: 0 30px;
+
+      img{
+        width: 23px;
+        object-position: left;
+      }
+    }
+
   }
 
 
