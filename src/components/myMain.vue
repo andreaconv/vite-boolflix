@@ -1,98 +1,50 @@
 <script>
-import Card from './partials/Card.vue';
+import CustomSwiper from './customSwiper.vue';
 import { store } from '../data/store';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
+import Loading from "./partials/Loading.vue";
 
 export default {
   name: 'myMain',
-  components: {
-    Card,
-    Swiper,
-    SwiperSlide,
-  },
-  // debug
-  setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
-    };
-    const onSlideChange = () => {
-      console.log('slide change');
-    };
-    return {
-      onSwiper,
-      onSlideChange,
-    };
-  },
-  // debug
   data() {
     return{
       store,
     }
   },
+  components: {
+    CustomSwiper,
+    Loading
+  }
 }
 </script>
 
 <template>
 
-  <div class="main-wrapper">
-
-    <h1>MOVIE POPULAR with slider</h1>
-    <swiper
-      :slides-per-view="5"
-      :space-between="50"
-      @swiper="onSwiper"
-      @slideChange="onSlideChange">
-        <swiper-slide 
-        v-for="card in store.popularMovie" 
-        :key="card.id">
-          <Card 
-            :image="card.poster_path"
-            :title="card.title"
-            :original_title="card.original_title" 
-            :original_language="card.original_language"
-            :vote_average="Math.round(card.vote_average / 2)"
-          />
-        </swiper-slide>
-      </swiper>
-    
-    <h1>MOVIE POPULAR</h1>
-    <div v-if="store.popularMovie.length > 0" class="row movie-pop">
-      <Card
-      v-for="card in store.popularMovie" 
-      :key="card.id"
-      :image="card.poster_path"
-      :title="card.title"
-      :original_title="card.original_title" 
-      :original_language="card.original_language"
-      :vote_average="Math.round(card.vote_average / 2)"/>
+  <main>
+    <div v-if="store.isLoading" class="load">
+      <Loading />
     </div>
 
-    <h1 v-if="store.showCardMovie">MOVIE</h1>
-    <div v-if="store.showCardMovie" class="row movie">
-      <Card 
-        v-for="card in store.movieUserArray" 
-        :key="card.id"
-        :image="card.poster_path"
-        :title="card.title"
-        :original_title="card.original_title" 
-        :original_language="card.original_language"
-        :vote_average="Math.round(card.vote_average / 2)"/>
+    <div v-else class="container main-wrapper">
+  
+      <CustomSwiper v-if="store.showPopular" title="movies popular" :items="store.popularMovie"/>
+
+      <CustomSwiper v-if="store.showPopular" title="series popular" :items="store.popularSeries"/>
+
+      <CustomSwiper v-if="store.showMovie" title="movies" :items="store.arrUserMovie"/>
+
+      <CustomSwiper v-if="store.showSeries" title="series" :items="store.arrUserSeries"/>
+
+  
+      <!-- debug -->
+      <footer>
+      </footer>
+      <!-- debug -->
+  
     </div>
 
-    <h1 v-if="store.showCardSeries">SERIES</h1>
-    <div v-if="store.showCardSeries" class="row series">
-      <Card
-        v-for="card in store.seriesUserArray" 
-        :key="card.id"
-        :image="card.poster_path"
-        :title="card.name"
-        :original_title="card.original_name" 
-        :original_language="card.original_language"
-        :vote_average="Math.round(card.vote_average / 2)"/>
-    </div>
+  </main>
 
-  </div>
+  
 
 </template>
 
@@ -100,24 +52,23 @@ export default {
   @use '../scss/partials/vars' as *;
   @use '../scss/partials/mixin' as *;
 
-  .main-wrapper{
+  main{
+    background-color: $primary-color;
+    color: white;
     padding-top: $height-header;
     min-height: 100vh;
-    background-color: $primary-color;
+  }
 
-    color: white;
+  .load{
+    text-align: center;
+  }
+  .main-wrapper{
 
-    h1{
-      color: white;
-      text-align: center;
-      margin: 0.5rem 0;
+    // debug
+    footer{
+      height: 50px;
     }
-    .row{
-      display: flex;
-      overflow-x: scroll;
-      padding-bottom: 2rem;
-    }
-    
+    // debug
 
   }
 

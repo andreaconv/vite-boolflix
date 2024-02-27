@@ -1,3 +1,22 @@
 @import './partials/general';
 @import './partials/vars';
 @import './partials/mixin';
+
+
+.swiper-pagination{
+  span.swiper-pagination-bullet-active{
+    background-color: $secondary-color;
+  }
+}
+
+.swiper-button-prev, .swiper-button-next{
+  color: $secondary-color;
+}
+
+.swiper-scrollbar-drag{
+  background-color: $secondary-color;
+}
+
+.swiper-pagination-bullet{
+  opacity: 1;
+}
