@@ -13,7 +13,14 @@ export default {
 
 <template>
 
-  <img v-if="store.popularMovie.length > 0" :src="`https://image.tmdb.org/t/p/w300/${store.popularMovie[2].backdrop_path}`" alt="">
+  <!-- FIXME: SE SI ATTIVA IL JUMBOTRON TOGLIERE IL PADDING-TOP DAL MAIN PERCHÉ L'HEADER È FIX E SI PERDE LA SUA ALTEZZAL -->
+
+  <!-- TODO: aggiungere un set interval che aumenta il couter per ciclare l'array dei film popolari in modo da visualizzare come uno slider il carosello delle immagini dei film più popolari -->
+
+  <img
+    v-if="store.popularMovie.length > 0"
+    :src="`https://image.tmdb.org/t/p/original/${store.popularMovie[0].backdrop_path}`"
+    alt="">
   
 </template>
 
